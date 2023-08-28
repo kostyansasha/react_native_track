@@ -1,6 +1,7 @@
 //ngrok http 3000
-//npx expo start
+
 //npm run dev
+//npx expo start    //+ change address for connectiion
 
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -15,10 +16,11 @@ import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigationRef';
-import { ResolveAuthScreen } from './src/screens/ResolveAuthScreen';
+import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const switchNavigator = createSwitchNavigator({
-    resolveAuth: ResolveAuthScreen,
+    ResolveAuth: ResolveAuthScreen,
     loginFlow: createStackNavigator({
         Signup: SignupScreen,
         Signin: SigninScreen
@@ -37,8 +39,10 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
     return (
-        <AuthProvider>
-            <App ref={(navigator) => { setNavigator(navigator) }} />
-        </AuthProvider>
+        <SafeAreaProvider>
+            <AuthProvider>
+                <App ref={(navigator) => { setNavigator(navigator) }} />
+            </AuthProvider>
+        </SafeAreaProvider>
     )
 }
