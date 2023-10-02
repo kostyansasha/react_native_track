@@ -1,7 +1,10 @@
 //ngrok http 3000
 
-//npm run dev
-//npx expo start    //+ change address for connectiion
+//npm run dev -> server app
+//npx expo start    //+ change address for connectiion  -> mobile app
+
+//npm install --save --legacy-peer-deps
+
 
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -18,7 +21,8 @@ import { Provider as AuthProvider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigationRef';
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider as LocationProvider } from './src/context/LocationContext'; 
+import { Provider as LocationProvider } from './src/context/LocationContext';
+import { Provider as TrackProvider } from './src/context/TrackContext';
 
 const switchNavigator = createSwitchNavigator({
     ResolveAuth: ResolveAuthScreen,
@@ -40,12 +44,15 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
     return (
+
         <SafeAreaProvider>
-            <LocationProvider>
-                <AuthProvider>
-                    <App ref={(navigator) => { setNavigator(navigator) }} />
-                </AuthProvider>
-            </LocationProvider>
+            <TrackProvider>
+                <LocationProvider>
+                    <AuthProvider>
+                        <App ref={(navigator) => { setNavigator(navigator) }} />
+                    </AuthProvider>
+                </LocationProvider>
+            </TrackProvider>
         </SafeAreaProvider>
     )
 }
