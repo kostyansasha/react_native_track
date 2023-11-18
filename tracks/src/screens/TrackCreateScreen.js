@@ -6,6 +6,9 @@ import Map from '../components/Map';
 import { withNavigationFocus } from 'react-navigation';
 import { Context as LocationContext } from '../context/LocationContext';
 import TrackForm from '../components/TrackForm';
+import useLocation from '../hooks/useLocation';   
+
+import '../_mockLocation'
 
 const TrackCreateScreen = ({ isFocused }) => {
     const {
