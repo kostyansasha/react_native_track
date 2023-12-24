@@ -6,9 +6,12 @@ import Map from '../components/Map';
 import { withNavigationFocus } from 'react-navigation';
 import { Context as LocationContext } from '../context/LocationContext';
 import TrackForm from '../components/TrackForm';
-import useLocation from '../hooks/useLocation';   
+import useLocation from '../hooks/useLocation';
+import { FontAwesome } from '@expo/vector-icons';
 
+//FAKE LOCATION
 import '../_mockLocation'
+
 
 const TrackCreateScreen = ({ isFocused }) => {
     const {
@@ -32,6 +35,11 @@ const TrackCreateScreen = ({ isFocused }) => {
             <TrackForm />
         </SafeAreaView>
     );
+}
+
+TrackCreateScreen.navigationOptions = {
+    title: 'Add Track',
+    tabBarIcon: <FontAwesome name='plus' size={20} />
 }
 
 const styles = StyleSheet.create({});
